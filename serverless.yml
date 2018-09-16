@@ -1,10 +1,11 @@
 service: sls-hello-world
 
+plugins:
+    - serverless-sam
+
 provider:
   name: aws
   runtime: nodejs8.10
-  profile: marcia
-
 
   iamRoleStatements:
     - Effect: "Allow"
@@ -13,7 +14,6 @@ provider:
         - "dynamodb:PutItem"
       Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/GreetNames"
-
 
 functions:
   hello:
